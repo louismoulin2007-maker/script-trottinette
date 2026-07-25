@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FR → DE — Studio de script</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="rail"></div>
+
+<main>
+  <header class="hero">
+    <p class="eyebrow">CANAL DE — TROTTINETTES ÉLECTRIQUES</p>
+    <h1>Un script tourné<br>en FR<span class="accent">.</span> Prêt en DE<span class="accent">.</span></h1>
+    <p class="sub">Dépose ta vidéo. Le moteur transcrit ta voix, puis réécrit le script en allemand — punchy, direct, prêt pour la voix off.</p>
+  </header>
+
+  <section class="panel" id="upload-panel">
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="file-input" accept="video/*" hidden>
+      <div class="dz-content" id="dz-content">
+        <span class="dz-icon">▲</span>
+        <p class="dz-title">Glisse ta vidéo ici</p>
+        <p class="dz-sub">ou clique pour parcourir — MP4, MOV, WEBM…</p>
+      </div>
+      <div class="dz-file" id="dz-file" hidden>
+        <span class="dz-icon">✓</span>
+        <p class="dz-title" id="file-name"></p>
+        <p class="dz-sub">clique pour changer de fichier</p>
+      </div>
+    </div>
+
+    <button id="run-btn" class="run-btn" disabled>Transcrire &amp; traduire →</button>
+
+    <div class="status" id="status" hidden>
+      <div class="status-line" data-step="audio"><span class="dot"></span> Extraction de l'audio</div>
+      <div class="status-line" data-step="transcribe"><span class="dot"></span> Transcription (FR)</div>
+      <div class="status-line" data-step="translate"><span class="dot"></span> Réécriture (DE)</div>
+    </div>
+
+    <div class="error" id="error-box" hidden></div>
+  </section>
+
+  <section class="results" id="results" hidden>
+    <article class="card">
+      <div class="card-head">
+        <h2>Français <span class="tag">transcription</span></h2>
+        <div class="card-actions">
+          <span class="count" id="fr-count"></span>
+          <button class="icon-btn" data-copy="fr-text" title="Copier">Copier</button>
+        </div>
+      </div>
+      <div class="text-box" id="fr-text"></div>
+    </article>
+
+    <article class="card highlight">
+      <div class="card-head">
+        <h2>Deutsch <span class="tag">script prêt à tourner</span></h2>
+        <div class="card-actions">
+          <span class="count" id="de-count"></span>
+          <button class="icon-btn" data-copy="de-text" title="Copier">Copier</button>
+          <button class="icon-btn" id="download-btn" title="Télécharger en .txt">.txt</button>
+        </div>
+      </div>
+      <div class="text-box" id="de-text"></div>
+    </article>
+  </section>
+</main>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
